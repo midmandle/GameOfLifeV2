@@ -5,19 +5,38 @@ import java.util.List;
 import static java.util.Arrays.asList;
 
 public class World {
-    private List<Coordinate> livingCellLocations;
+    private List<Cell> livingCells;
 
     public void setLivingCells(List<Coordinate> livingCellLocations) {
-        this.livingCellLocations = livingCellLocations;
+        this.livingCells = this.initialiseLivingCellsAt(livingCellLocations);
+    }
+
+    private List<Cell> initialiseLivingCellsAt(List<Coordinate> livingCellLocations) {
+        List<Cell> result = new ArrayList<Cell>();
+        for (Coordinate location :
+                livingCellLocations) {
+            result.add(new Cell(location));
+        }
+        return result;
     }
 
     public World tick() {
+        List<Cell> survivors = new ArrayList<Cell>();
         World nextWorld = new World();
-        nextWorld.setLivingCells(this.livingCellLocations);
+        nextWorld.setLivingCells(this.getCellLocations(survivors));
         return nextWorld;
     }
 
+    private List<Coordinate> getCellLocations(List<Cell> survivors) {
+        return new ArrayList<Coordinate>();
+    }
+
     public List<Coordinate> getLivingCellLocations() {
-        return this.livingCellLocations;
+        List<Coordinate> result = new ArrayList<Coordinate>();
+        for (Cell cell :
+                this.livingCells) {
+                result.add(cell.getCoordinate());
+        }
+        return result;
     }
 }
