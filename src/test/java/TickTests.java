@@ -29,4 +29,15 @@ public class TickTests {
         List<Coordinate> nextLivingCellLocations = nextWorld.getLivingCellLocations();
         assertTrue(nextLivingCellLocations.isEmpty());
     }
+
+    @Test
+    public void a_world_with_surviving_cells_returns_a_world_with_surviving_cells() {
+        List<Coordinate> livingCellLocations = asList(new Coordinate(0, 0), new Coordinate(0, 1), new Coordinate(1, 0));
+        World world = new World(livingCellLocations);
+
+        World nextWorld = world.tick();
+
+        List<Coordinate> nextLivingCellLocations = nextWorld.getLivingCellLocations();
+        assertTrue(nextLivingCellLocations.containsAll(livingCellLocations));
+    }
 }

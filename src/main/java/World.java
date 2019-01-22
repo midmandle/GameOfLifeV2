@@ -21,21 +21,31 @@ public class World {
     }
 
     public World tick() {
-        List<Cell> survivors = new ArrayList<Cell>();
+        List<Cell> survivors = this.identifySurvivors();
         World nextWorld = new World(this.getCellLocations(survivors));
         return nextWorld;
     }
 
-    private List<Coordinate> getCellLocations(List<Cell> survivors) {
-        return new ArrayList<Coordinate>();
+    private List<Cell> identifySurvivors() {
+        List<Cell> result = new ArrayList<Cell>();
+        for (Cell cell :
+                this.livingCells) {
+            if (cell.determineNumberOfLivingNeighbours(this.livingCells) == 2)
+                result.add(cell);
+        }
+        return result;
+    }
+
+    private List<Coordinate> getCellLocations(List<Cell> cells) {
+        List<Coordinate> result = new ArrayList<Coordinate>();
+        for (Cell cell :
+                cells) {
+            result.add(cell.getCoordinate());
+        }
+        return result;
     }
 
     public List<Coordinate> getLivingCellLocations() {
-        List<Coordinate> result = new ArrayList<Coordinate>();
-        for (Cell cell :
-                this.livingCells) {
-                result.add(cell.getCoordinate());
-        }
-        return result;
+        return this.getCellLocations(this.livingCells);
     }
 }
