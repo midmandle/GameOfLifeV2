@@ -7,8 +7,8 @@ import static java.util.Arrays.asList;
 public class World {
     private List<Cell> livingCells;
 
-    public void setLivingCells(List<Coordinate> livingCellLocations) {
-        this.livingCells = this.initialiseLivingCellsAt(livingCellLocations);
+    public World(List<Coordinate> livingLocations) {
+        this.livingCells = this.initialiseLivingCellsAt(livingLocations);
     }
 
     private List<Cell> initialiseLivingCellsAt(List<Coordinate> livingCellLocations) {
@@ -22,8 +22,7 @@ public class World {
 
     public World tick() {
         List<Cell> survivors = new ArrayList<Cell>();
-        World nextWorld = new World();
-        nextWorld.setLivingCells(this.getCellLocations(survivors));
+        World nextWorld = new World(this.getCellLocations(survivors));
         return nextWorld;
     }
 

@@ -10,9 +10,8 @@ import static junit.framework.TestCase.assertTrue;
 public class TickTests {
     @Test
     public void a_world_with_no_living_cells_returns_a_world_without_living_cells() {
-        World world = new World();
         List<Coordinate> livingCellLocations = new ArrayList<Coordinate>();
-        world.setLivingCells(livingCellLocations);
+        World world = new World(livingCellLocations);
 
         World nextWorld = world.tick();
 
@@ -22,9 +21,8 @@ public class TickTests {
 
     @Test
     public void a_world_with_one_living_cell_returns_a_world_with_no_living_cells() {
-        World world = new World();
         List<Coordinate> livingCellLocations = asList(new Coordinate(0,0));
-        world.setLivingCells(livingCellLocations);
+        World world = new World(livingCellLocations);
 
         World nextWorld = world.tick();
 
