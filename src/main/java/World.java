@@ -5,15 +5,19 @@ import java.util.List;
 import static java.util.Arrays.asList;
 
 public class World {
-    public void setLivingCells(List<Coordinate> livingCellLocations) {
+    private List<Coordinate> livingCellLocations;
 
+    public void setLivingCells(List<Coordinate> livingCellLocations) {
+        this.livingCellLocations = livingCellLocations;
     }
 
     public World tick() {
-        return new World();
+        World nextWorld = new World();
+        nextWorld.setLivingCells(this.livingCellLocations);
+        return nextWorld;
     }
 
     public List<Coordinate> getLivingCellLocations() {
-        return new ArrayList<Coordinate>();
+        return this.livingCellLocations;
     }
 }
