@@ -1,4 +1,7 @@
+import java.util.List;
 import java.util.Objects;
+
+import static java.util.Arrays.asList;
 
 public class Coordinate {
 
@@ -22,5 +25,18 @@ public class Coordinate {
     @Override
     public int hashCode() {
         return Objects.hash(yCoordinate, xCoordinate);
+    }
+
+    public List<Coordinate> identifySurroundingArea() {
+        return asList(
+                new Coordinate(this.xCoordinate - 1, this.yCoordinate - 1),
+                new Coordinate(this.xCoordinate, this.yCoordinate - 1),
+                new Coordinate(this.xCoordinate + 1, this.yCoordinate - 1),
+                new Coordinate(this.xCoordinate - 1, this.yCoordinate),
+                new Coordinate(this.xCoordinate + 1, this.yCoordinate),
+                new Coordinate(this.xCoordinate - 1, this.yCoordinate + 1),
+                new Coordinate(this.xCoordinate, this.yCoordinate + 1),
+                new Coordinate(this.xCoordinate + 1, this.yCoordinate + 1)
+        );
     }
 }

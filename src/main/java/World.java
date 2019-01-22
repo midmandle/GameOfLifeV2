@@ -30,7 +30,8 @@ public class World {
         List<Cell> result = new ArrayList<Cell>();
         for (Cell cell :
                 this.livingCells) {
-            if (cell.determineNumberOfLivingNeighbours(this.livingCells) == 2)
+            System.out.println(cell.determineNumberOfLivingNeighbours(this.getLivingCellLocations()));
+            if (cell.determineNumberOfLivingNeighbours(this.getLivingCellLocations()) == 2)
                 result.add(cell);
         }
         return result;
