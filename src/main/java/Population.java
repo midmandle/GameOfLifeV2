@@ -35,9 +35,7 @@ public class Population {
     private Map<Coordinate, Cell> generateCellSpace() {
         Map<Coordinate, Cell> result = new HashMap<Coordinate, Cell>();
         addCellsToSpace(result, this.livingCells);
-
         addCellsToSpace(result, this.deadCells);
-
         return result;
     }
 
