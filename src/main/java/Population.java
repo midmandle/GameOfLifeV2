@@ -39,10 +39,10 @@ public class Population {
         return result;
     }
 
-    private void addCellsToSpace(Map<Coordinate, Cell> result, List<Cell> cells) {
+    private void addCellsToSpace(Map<Coordinate, Cell> space, List<Cell> cells) {
         for (Cell livingCell :
                 cells) {
-            result.put(livingCell.getCoordinate(), livingCell);
+            space.put(livingCell.getCoordinate(), livingCell);
         }
     }
 
