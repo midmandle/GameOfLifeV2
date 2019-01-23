@@ -34,12 +34,8 @@ public class Cell {
         return this.coordinate.identifySurroundingArea();
     }
 
-    public CellState getCurrentState() {
-        return this.cellState;
-    }
-
     boolean isDieing(Population population) {
-        if(getCurrentState() == CellState.Dead)
+        if(this.cellState == CellState.Dead)
             return false;
         List<Coordinate> livingCellLocations = population.getLivingCellCoordinates();
         int numberOfNeighbors = determineNumberOfLivingNeighbours(livingCellLocations);
@@ -47,7 +43,7 @@ public class Cell {
     }
 
     boolean isBirth(Population population) {
-        if(getCurrentState() == CellState.Alive)
+        if(this.cellState == CellState.Alive)
             return false;
         List<Coordinate> livingCellLocations = population.getLivingCellCoordinates();
         int numberOfNeighbors = determineNumberOfLivingNeighbours(livingCellLocations);
@@ -55,7 +51,7 @@ public class Cell {
     }
 
     boolean isSurvivor(Population population) {
-        if(getCurrentState() == CellState.Dead)
+        if(this.cellState == CellState.Dead)
             return false;
         List<Coordinate> livingCellLocations = population.getLivingCellCoordinates();
         int numberOfNeighbors = determineNumberOfLivingNeighbours(livingCellLocations);
