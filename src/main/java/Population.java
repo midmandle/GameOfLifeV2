@@ -80,16 +80,6 @@ public class Population {
         return result;
     }
 
-    public List<Coordinate> identifySurvivors() {
-        final List<Coordinate> survivorLocations = new ArrayList<Coordinate>();
-        this.currentCellSpace.forEach((coordinate, cell) -> {
-           if(cell.isSurvivor(this))
-               survivorLocations.add(coordinate);
-        });
-        return survivorLocations;
-    }
-
-
     private List<Coordinate> getCellLocations(List<Cell> cells) {
         List<Coordinate> result = new ArrayList<Coordinate>();
         for (Cell cell :
@@ -97,6 +87,10 @@ public class Population {
             result.add(cell.getCoordinate());
         }
         return result;
+    }
+
+    List<Coordinate> getLivingCellCoordinates() {
+        return this.getCellLocations(this.livingCells);
     }
 
     public List<Coordinate> identifyDieingCells() {
@@ -117,8 +111,13 @@ public class Population {
         return birthLocations;
     }
 
-    List<Coordinate> getLivingCellCoordinates() {
-        return this.getCellLocations(this.livingCells);
+    public List<Coordinate> identifySurvivors() {
+        final List<Coordinate> survivorLocations = new ArrayList<Coordinate>();
+        this.currentCellSpace.forEach((coordinate, cell) -> {
+            if(cell.isSurvivor(this))
+                survivorLocations.add(coordinate);
+        });
+        return survivorLocations;
     }
 }
 
