@@ -86,7 +86,6 @@ public class Population {
            if(isSurvivor(cell))
                survivorLocations.add(coordinate);
         });
-        System.out.println(survivorLocations);
         return survivorLocations;
     }
 
@@ -95,7 +94,6 @@ public class Population {
             return false;
         List<Coordinate> livingCellLocations = this.getCellLocations(this.livingCells);
         int numberOfNeighbors = cell.determineNumberOfLivingNeighbours(livingCellLocations);
-        System.out.println(numberOfNeighbors);
         return (numberOfNeighbors >= 2) && (numberOfNeighbors <= 3);
     }
 
@@ -107,6 +105,23 @@ public class Population {
             result.add(cell.getCoordinate());
         }
         return result;
+    }
+
+    public List<Coordinate> identifyDieingCells() {
+        final List<Coordinate> dieingLocations = new ArrayList<Coordinate>();
+        this.currentCellSpace.forEach(((coordinate, cell) -> {
+            if(isDieing(cell))
+                dieingLocations.add(coordinate);
+        }));
+        return dieingLocations;
+    }
+
+    private boolean isDieing(Cell cell) {
+        if(cell.getCurrentState() == CellState.Dead)
+            return false;
+        List<Coordinate> livingCellLocations = this.getCellLocations(this.livingCells);
+        int numberOfNeighbors = cell.determineNumberOfLivingNeighbours(livingCellLocations);
+        return numberOfNeighbors < 2;
     }
 }
 
