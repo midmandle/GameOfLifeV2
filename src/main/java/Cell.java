@@ -3,9 +3,11 @@ import java.util.List;
 
 public class Cell {
     private Coordinate coordinate;
+    private CellState cellState;
 
-    public Cell(Coordinate location) {
+    public Cell(Coordinate location, CellState cellState) {
         this.coordinate = location;
+        this.cellState = cellState;
     }
 
     public Coordinate getCoordinate() {
@@ -30,5 +32,9 @@ public class Cell {
 
     private List<Coordinate> generateNeighborhood() {
         return this.coordinate.identifySurroundingArea();
+    }
+
+    public CellState getCurrentState() {
+        return this.cellState;
     }
 }

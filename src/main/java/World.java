@@ -1,8 +1,5 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
-
-import static java.util.Arrays.asList;
 
 public class World {
     private List<Cell> livingCells;
@@ -15,7 +12,7 @@ public class World {
         List<Cell> result = new ArrayList<Cell>();
         for (Coordinate location :
                 livingCellLocations) {
-            result.add(new Cell(location));
+            result.add(new Cell(location, CellState.Alive));
         }
         return result;
     }
