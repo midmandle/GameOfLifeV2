@@ -16,6 +16,15 @@ public class CellTests {
     }
 
     @Test
+    public void a_cell_can_identify_if_it_will_die() {
+        Cell cell = new Cell(new Coordinate(0,  0), CellState.Alive);
+        Cell cell1 = new Cell(new Coordinate(0, 1), CellState.Alive);
+        Cell cell2 = new Cell(new Coordinate(0, 2), CellState.Alive);
+        Population population = new Population(asList(cell.getCoordinate(), cell1.getCoordinate(), cell2.getCoordinate()));
+        assertTrue(cell.isDieing(population));
+    }
+
+    @Test
     public void a_cell_identifies_its_living_neighbors_from_the_population() {
         Cell cell = new Cell(new Coordinate(0,0), CellState.Alive);
         Cell livingNeighbor = new Cell(new Coordinate(0, 1), CellState.Alive);
