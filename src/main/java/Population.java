@@ -34,17 +34,18 @@ public class Population {
 
     private Map<Coordinate, Cell> generateCellSpace() {
         Map<Coordinate, Cell> result = new HashMap<Coordinate, Cell>();
-        for (Cell livingCell :
-                this.livingCells) {
-            result.put(livingCell.getCoordinate(), livingCell);
-        }
+        addCellsToSpace(result, this.livingCells);
 
-        for (Cell deadCell :
-                this.deadCells) {
-            result.put(deadCell.getCoordinate(), deadCell);
-        }
+        addCellsToSpace(result, this.deadCells);
 
         return result;
+    }
+
+    private void addCellsToSpace(Map<Coordinate, Cell> result, List<Cell> cells) {
+        for (Cell livingCell :
+                cells) {
+            result.put(livingCell.getCoordinate(), livingCell);
+        }
     }
 
     private List<Coordinate> identifyDeadLocations() {
