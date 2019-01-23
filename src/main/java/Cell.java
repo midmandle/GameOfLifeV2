@@ -37,4 +37,28 @@ public class Cell {
     public CellState getCurrentState() {
         return this.cellState;
     }
+
+    boolean isDieing(Population population) {
+        if(getCurrentState() == CellState.Dead)
+            return false;
+        List<Coordinate> livingCellLocations = population.getLivingCellCoordinates();
+        int numberOfNeighbors = determineNumberOfLivingNeighbours(livingCellLocations);
+        return numberOfNeighbors < 2 || numberOfNeighbors >= 4;
+    }
+
+    boolean isBirth(Population population) {
+        if(getCurrentState() == CellState.Alive)
+            return false;
+        List<Coordinate> livingCellLocations = population.getLivingCellCoordinates();
+        int numberOfNeighbors = determineNumberOfLivingNeighbours(livingCellLocations);
+        return numberOfNeighbors == 3;
+    }
+
+    boolean isSurvivor(Population population) {
+        if(getCurrentState() == CellState.Dead)
+            return false;
+        List<Coordinate> livingCellLocations = population.getLivingCellCoordinates();
+        int numberOfNeighbors = determineNumberOfLivingNeighbours(livingCellLocations);
+        return (numberOfNeighbors >= 2) && (numberOfNeighbors <= 3);
+    }
 }

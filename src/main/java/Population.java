@@ -83,18 +83,10 @@ public class Population {
     public List<Coordinate> identifySurvivors() {
         final List<Coordinate> survivorLocations = new ArrayList<Coordinate>();
         this.currentCellSpace.forEach((coordinate, cell) -> {
-           if(isSurvivor(cell))
+           if(cell.isSurvivor(this))
                survivorLocations.add(coordinate);
         });
         return survivorLocations;
-    }
-
-    private boolean isSurvivor(Cell cell) {
-        if(cell.getCurrentState() == CellState.Dead)
-            return false;
-        List<Coordinate> livingCellLocations = getLivingCellCoordinates();
-        int numberOfNeighbors = cell.determineNumberOfLivingNeighbours(livingCellLocations);
-        return (numberOfNeighbors >= 2) && (numberOfNeighbors <= 3);
     }
 
 
@@ -110,38 +102,22 @@ public class Population {
     public List<Coordinate> identifyDieingCells() {
         final List<Coordinate> dieingLocations = new ArrayList<Coordinate>();
         this.currentCellSpace.forEach(((coordinate, cell) -> {
-            if(isDieing(cell))
+            if(cell.isDieing(this))
                 dieingLocations.add(coordinate);
         }));
         return dieingLocations;
     }
 
-    private boolean isDieing(Cell cell) {
-        if(cell.getCurrentState() == CellState.Dead)
-            return false;
-        List<Coordinate> livingCellLocations = getLivingCellCoordinates();
-        int numberOfNeighbors = cell.determineNumberOfLivingNeighbours(livingCellLocations);
-        return numberOfNeighbors < 2 || numberOfNeighbors >= 4;
-    }
-
     public List<Coordinate> identifyBirths() {
         final List<Coordinate> birthLocations = new ArrayList<Coordinate>();
         this.currentCellSpace.forEach(((coordinate, cell) -> {
-            if(isBirth(cell))
+            if(cell.isBirth(this))
                 birthLocations.add(coordinate);
         }));
         return birthLocations;
     }
 
-    private boolean isBirth(Cell cell) {
-        if(cell.getCurrentState() == CellState.Alive)
-            return false;
-        List<Coordinate> livingCellLocations = getLivingCellCoordinates();
-        int numberOfNeighbors = cell.determineNumberOfLivingNeighbours(livingCellLocations);
-        return numberOfNeighbors == 3;
-    }
-
-    private List<Coordinate> getLivingCellCoordinates() {
+    List<Coordinate> getLivingCellCoordinates() {
         return this.getCellLocations(this.livingCells);
     }
 }
