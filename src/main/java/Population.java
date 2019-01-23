@@ -121,7 +121,24 @@ public class Population {
             return false;
         List<Coordinate> livingCellLocations = this.getCellLocations(this.livingCells);
         int numberOfNeighbors = cell.determineNumberOfLivingNeighbours(livingCellLocations);
-        return numberOfNeighbors < 2;
+        return numberOfNeighbors < 2 || numberOfNeighbors >= 4;
+    }
+
+    public List<Coordinate> identifyBirths() {
+        final List<Coordinate> birthLocations = new ArrayList<Coordinate>();
+        this.currentCellSpace.forEach(((coordinate, cell) -> {
+            if(isBirth(cell))
+                birthLocations.add(coordinate);
+        }));
+        return birthLocations;
+    }
+
+    private boolean isBirth(Cell cell) {
+        if(cell.getCurrentState() == CellState.Alive)
+            return false;
+        List<Coordinate> livingCellLocations = this.getCellLocations(this.livingCells);
+        int numberOfNeighbors = cell.determineNumberOfLivingNeighbours(livingCellLocations);
+        return numberOfNeighbors == 3;  
     }
 }
 
