@@ -32,8 +32,7 @@ class Population {
 
     private List<Cell> generateCells(List<Coordinate> cellLocations, CellState state) {
         List<Cell> result = new ArrayList<Cell>();
-        for (Coordinate location:
-                cellLocations) {
+        for (Coordinate location: cellLocations) {
             result.add(new Cell(location, state));
         }
         return result;
@@ -41,8 +40,7 @@ class Population {
 
     private List<Coordinate> identifyDeadLocations() {
         List<Coordinate> result = new ArrayList<Coordinate>();
-        for (Cell livingCell :
-                this.livingCells) {
+        for (Cell livingCell : this.livingCells) {
             result = addSurroundingDeadLocations(result, livingCell);
         }
         return result;
@@ -58,8 +56,7 @@ class Population {
     private List<Coordinate> removeLivingCellLocations(List<Coordinate> surroundingLocations) {
         List<Coordinate> result = new ArrayList<Coordinate>();
         result.addAll(surroundingLocations);
-        for (Cell livingCell :
-                this.livingCells) {
+        for (Cell livingCell : this.livingCells) {
             result = removeIfExists(result, livingCell);
         }
         return result;
@@ -73,8 +70,7 @@ class Population {
     }
 
     private List<Coordinate> addDistinctLocations(List<Coordinate> result, List<Coordinate> surroundingLocations) {
-        for (Coordinate location :
-                surroundingLocations) {
+        for (Coordinate location : surroundingLocations) {
             if (!result.contains(location))
                 result.add(location);
         }
@@ -82,16 +78,14 @@ class Population {
     }
 
     private void addCellsToSpace(Map<Coordinate, Cell> space, List<Cell> cells) {
-        for (Cell livingCell :
-                cells) {
+        for (Cell livingCell : cells) {
             space.put(livingCell.getCoordinate(), livingCell);
         }
     }
 
     private List<Coordinate> getCellLocations(List<Cell> cells) {
         List<Coordinate> result = new ArrayList<Coordinate>();
-        for (Cell cell :
-                cells) {
+        for (Cell cell : cells) {
             result.add(cell.getCoordinate());
         }
         return result;

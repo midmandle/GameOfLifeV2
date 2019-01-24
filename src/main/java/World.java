@@ -17,7 +17,7 @@ public class World {
     private List<Coordinate> generateLivingLocationsForNextWorld() {
         List<Coordinate> survivorLocations = this.population.identifySurvivors();
         List<Coordinate> birthLocations = this.population.identifyBirths();
-        
+
         List<Coordinate> nextLivingLocations = new ArrayList<Coordinate>();
         nextLivingLocations.addAll(survivorLocations);
         nextLivingLocations.addAll(birthLocations);

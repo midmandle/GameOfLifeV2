@@ -22,8 +22,7 @@ public class Cell {
 
     private List<Coordinate> identifyLivingNeighbors(List<Coordinate> neighborhood, List<Coordinate> livingPopulation) {
         List<Coordinate> result = new ArrayList<Coordinate>();
-        for (Coordinate neighbor :
-                neighborhood) {
+        for (Coordinate neighbor : neighborhood) {
             addIfLivingNeighbour(livingPopulation, result, neighbor);
         }
         return result;
