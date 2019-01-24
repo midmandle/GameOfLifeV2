@@ -50,10 +50,15 @@ public class Population {
         List<Coordinate> result = new ArrayList<Coordinate>();
         for (Cell livingCell :
                 this.livingCells) {
-            List<Coordinate> surroundingLocation = livingCell.getCoordinate().identifySurroundingArea();
-            surroundingLocation = removeLivingCellLocations(surroundingLocation);
-            result = addDistinctLocations(result, surroundingLocation);
+            result = addSurroundingDeadLocations(result, livingCell);
         }
+        return result;
+    }
+
+    private List<Coordinate> addSurroundingDeadLocations(List<Coordinate> result, Cell livingCell) {
+        List<Coordinate> surroundingLocation = livingCell.generateNeighborhood();
+        surroundingLocation = removeLivingCellLocations(surroundingLocation);
+        result = addDistinctLocations(result, surroundingLocation);
         return result;
     }
 

@@ -20,17 +20,21 @@ public class Cell {
         return livingNeighbors.size();
     }
 
-    private List<Coordinate> identifyLivingNeighbors(List<Coordinate> neighborhood, List<Coordinate> population) {
+    private List<Coordinate> identifyLivingNeighbors(List<Coordinate> neighborhood, List<Coordinate> livingPopulation) {
         List<Coordinate> result = new ArrayList<Coordinate>();
         for (Coordinate neighbor :
                 neighborhood) {
-              if(population.contains(neighbor))
-                  result.add(neighbor);
+            addIfLivingNeighbour(livingPopulation, result, neighbor);
         }
         return result;
     }
 
-    private List<Coordinate> generateNeighborhood() {
+    private void addIfLivingNeighbour(List<Coordinate> livingPopulation, List<Coordinate> result, Coordinate neighbor) {
+        if(livingPopulation.contains(neighbor))
+            result.add(neighbor);
+    }
+
+    public List<Coordinate> generateNeighborhood() {
         return this.coordinate.identifySurroundingArea();
     }
 
