@@ -11,13 +11,18 @@ public class World {
     }
 
     public World tick() {
+        return new World(generateLivingLocationsForNextWorld());
+    }
+
+    private List<Coordinate> generateLivingLocationsForNextWorld() {
         List<Coordinate> survivorLocations = this.population.identifySurvivors();
         List<Coordinate> birthLocations = this.population.identifyBirths();
+        
         List<Coordinate> nextLivingLocations = new ArrayList<Coordinate>();
         nextLivingLocations.addAll(survivorLocations);
         nextLivingLocations.addAll(birthLocations);
-        World nextWorld = new World(nextLivingLocations);
-        return nextWorld;
+
+        return nextLivingLocations;
     }
 
     public List<Coordinate> getLivingCellLocations() {
