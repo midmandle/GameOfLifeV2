@@ -14,7 +14,7 @@ public class Cell {
         return this.coordinate;
     }
 
-    public int determineNumberOfLivingNeighbours(List<Coordinate> population) {
+    private int determineNumberOfLivingNeighbours(List<Coordinate> population) {
         List<Coordinate> neighborhood = this.generateNeighborhood();
         List<Coordinate> livingNeighbors = this.identifyLivingNeighbors(neighborhood, population);
         return livingNeighbors.size();
