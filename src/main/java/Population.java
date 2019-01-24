@@ -3,12 +3,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Population {
+class Population {
     private final List<Cell> livingCells;
     private final List<Cell> deadCells;
     private final Map<Coordinate, Cell> currentCellSpace;
 
-    public Population(List<Coordinate> livingCellLocations) {
+    Population(List<Coordinate> livingCellLocations) {
         this.livingCells = this.generateLivingCellsForLocations(livingCellLocations);
         this.deadCells = this.generateDeadCells();
         this.currentCellSpace = generateCellSpace();
@@ -101,7 +101,7 @@ public class Population {
         return this.getCellLocations(this.livingCells);
     }
 
-    public List<Coordinate> identifyDieingCells() {
+    List<Coordinate> identifyDieingCells() {
         final List<Coordinate> dieingLocations = new ArrayList<Coordinate>();
         this.currentCellSpace.forEach(((coordinate, cell) -> {
             if(cell.isDieing(this))
@@ -110,7 +110,7 @@ public class Population {
         return dieingLocations;
     }
 
-    public List<Coordinate> identifyBirths() {
+    List<Coordinate> identifyBirths() {
         final List<Coordinate> birthLocations = new ArrayList<Coordinate>();
         this.currentCellSpace.forEach(((coordinate, cell) -> {
             if(cell.isBirth(this))
@@ -119,7 +119,7 @@ public class Population {
         return birthLocations;
     }
 
-    public List<Coordinate> identifySurvivors() {
+    List<Coordinate> identifySurvivors() {
         final List<Coordinate> survivorLocations = new ArrayList<Coordinate>();
         this.currentCellSpace.forEach((coordinate, cell) -> {
             if(cell.isSurvivor(this))
