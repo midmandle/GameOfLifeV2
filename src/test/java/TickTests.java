@@ -21,7 +21,9 @@ public class TickTests {
 
     @Test
     public void a_world_with_one_living_cell_returns_a_world_with_no_living_cells() {
-        List<Coordinate> livingCellLocations = asList(new Coordinate(0,0));
+        List<Coordinate> livingCellLocations = asList(
+                new Coordinate(0,0)
+        );
         World world = new World(livingCellLocations);
 
         World nextWorld = world.tick();
@@ -32,7 +34,11 @@ public class TickTests {
 
     @Test
     public void a_world_with_surviving_cells_returns_a_world_with_surviving_cells() {
-        List<Coordinate> livingCellLocations = asList(new Coordinate(0, 0), new Coordinate(0, 1), new Coordinate(1, 0));
+        List<Coordinate> livingCellLocations = asList(
+                new Coordinate(0, 0),
+                new Coordinate(0, 1),
+                new Coordinate(1, 0)
+        );
         World world = new World(livingCellLocations);
 
         World nextWorld = world.tick();
