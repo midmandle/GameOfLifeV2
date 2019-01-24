@@ -29,14 +29,46 @@ public class Coordinate {
 
     public List<Coordinate> identifySurroundingArea() {
         return asList(
-                new Coordinate(this.xCoordinate - 1, this.yCoordinate - 1),
-                new Coordinate(this.xCoordinate, this.yCoordinate - 1),
-                new Coordinate(this.xCoordinate + 1, this.yCoordinate - 1),
-                new Coordinate(this.xCoordinate - 1, this.yCoordinate),
-                new Coordinate(this.xCoordinate + 1, this.yCoordinate),
-                new Coordinate(this.xCoordinate - 1, this.yCoordinate + 1),
-                new Coordinate(this.xCoordinate, this.yCoordinate + 1),
-                new Coordinate(this.xCoordinate + 1, this.yCoordinate + 1)
+                this.identifyBottomLeftCoordinate(),
+                this.identifyBottomCoordinate(),
+                this.identifyBottomRightCoordinate(),
+                this.identifyLeftCoordinate(),
+                this.identifyRightCoordinate(),
+                this.identifyTopLeftCoordinate(),
+                this.identifyTopCoordinate(),
+                this.identifyTopRightCoordinate()
         );
+    }
+
+    private Coordinate identifyBottomLeftCoordinate() {
+        return new Coordinate(this.xCoordinate - 1, this.yCoordinate - 1);
+    }
+
+    private Coordinate identifyBottomCoordinate(){
+        return new Coordinate(this.xCoordinate, this.yCoordinate - 1);
+    }
+
+    private Coordinate identifyBottomRightCoordinate() {
+        return new Coordinate(this.xCoordinate + 1, this.yCoordinate - 1);
+    }
+
+    private Coordinate identifyLeftCoordinate() {
+        return new Coordinate(this.xCoordinate - 1, this.yCoordinate);
+    }
+
+    private Coordinate identifyRightCoordinate() {
+        return new Coordinate(this.xCoordinate + 1, this.yCoordinate);
+    }
+
+    private Coordinate identifyTopLeftCoordinate() {
+        return new Coordinate(this.xCoordinate - 1, this.yCoordinate + 1);
+    }
+
+    private Coordinate identifyTopCoordinate() {
+        return new Coordinate(this.xCoordinate, this.yCoordinate + 1);
+    }
+
+    private Coordinate identifyTopRightCoordinate() {
+        return new Coordinate(this.xCoordinate + 1, this.yCoordinate + 1);
     }
 }
