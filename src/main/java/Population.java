@@ -82,9 +82,8 @@ public class Population {
     private List<Coordinate> addDistinctLocations(List<Coordinate> result, List<Coordinate> surroundingLocations) {
         for (Coordinate location :
                 surroundingLocations) {
-            if (result.contains(location))
-                continue;
-            result.add(location);
+            if (!result.contains(location))
+                result.add(location);
         }
         return result;
     }
