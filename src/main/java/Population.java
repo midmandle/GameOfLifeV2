@@ -67,10 +67,15 @@ public class Population {
         result.addAll(surroundingLocations);
         for (Cell livingCell :
                 this.livingCells) {
-            int indexOfCoordinate = result.indexOf(livingCell.getCoordinate());
-            if(indexOfCoordinate >= 0)
-                result.remove(indexOfCoordinate);
+            result = removeIfExists(result, livingCell);
         }
+        return result;
+    }
+
+    private List<Coordinate> removeIfExists(List<Coordinate> result, Cell livingCell) {
+        int indexOfCoordinate = result.indexOf(livingCell.getCoordinate());
+        if(indexOfCoordinate >= 0)
+            result.remove(indexOfCoordinate);
         return result;
     }
 
