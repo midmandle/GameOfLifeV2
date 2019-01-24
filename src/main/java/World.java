@@ -2,47 +2,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class World {
+    private final Population population;
     private List<Cell> livingCells;
 
     public World(List<Coordinate> livingLocations) {
-        this.livingCells = this.initialiseLivingCellsAt(livingLocations);
-    }
-
-    private List<Cell> initialiseLivingCellsAt(List<Coordinate> livingCellLocations) {
-        List<Cell> result = new ArrayList<Cell>();
-        for (Coordinate location :
-                livingCellLocations) {
-            result.add(new Cell(location, CellState.Alive));
-        }
-        return result;
+        this.population = new Population(livingLocations);
     }
 
     public World tick() {
-        List<Cell> survivors = this.identifySurvivors();
-        World nextWorld = new World(this.getCellLocations(survivors));
+        List<Coordinate> survivorLocations = this.population.identifySurvivors();
+        World nextWorld = new World(survivorLocations);
         return nextWorld;
     }
 
-    private List<Cell> identifySurvivors() {
-        List<Cell> result = new ArrayList<Cell>();
-        for (Cell cell :
-                this.livingCells) {
-            if (cell.determineNumberOfLivingNeighbours(this.getLivingCellLocations()) == 2)
-                result.add(cell);
-        }
-        return result;
-    }
-
-    private List<Coordinate> getCellLocations(List<Cell> cells) {
-        List<Coordinate> result = new ArrayList<Coordinate>();
-        for (Cell cell :
-                cells) {
-            result.add(cell.getCoordinate());
-        }
-        return result;
-    }
-
     public List<Coordinate> getLivingCellLocations() {
-        return this.getCellLocations(this.livingCells);
+        return this.population.getLivingCellCoordinates();
     }
 }
