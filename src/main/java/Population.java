@@ -18,15 +18,6 @@ class Population {
         return this.generateCells(livingCellLocations, CellState.Alive);
     }
 
-    private List<Cell> generateCells(List<Coordinate> cellLocations, CellState state) {
-        List<Cell> result = new ArrayList<Cell>();
-        for (Coordinate location:
-             cellLocations) {
-           result.add(new Cell(location, state));
-        }
-        return result;
-    }
-
     private List<Cell> generateDeadCells() {
         List<Coordinate> deadCellLocations = this.identifyDeadLocations();
         return this.generateCells(deadCellLocations, CellState.Dead);
@@ -39,11 +30,13 @@ class Population {
         return result;
     }
 
-    private void addCellsToSpace(Map<Coordinate, Cell> space, List<Cell> cells) {
-        for (Cell livingCell :
-                cells) {
-            space.put(livingCell.getCoordinate(), livingCell);
+    private List<Cell> generateCells(List<Coordinate> cellLocations, CellState state) {
+        List<Cell> result = new ArrayList<Cell>();
+        for (Coordinate location:
+                cellLocations) {
+            result.add(new Cell(location, state));
         }
+        return result;
     }
 
     private List<Coordinate> identifyDeadLocations() {
@@ -86,6 +79,13 @@ class Population {
                 result.add(location);
         }
         return result;
+    }
+
+    private void addCellsToSpace(Map<Coordinate, Cell> space, List<Cell> cells) {
+        for (Cell livingCell :
+                cells) {
+            space.put(livingCell.getCoordinate(), livingCell);
+        }
     }
 
     private List<Coordinate> getCellLocations(List<Cell> cells) {
