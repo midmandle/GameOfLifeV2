@@ -52,7 +52,7 @@ public class TickTests {
         List<Coordinate> livingCellLocations = asList(
                 new Coordinate(0, 0),
                 new Coordinate(1, 1),
-                new Coordinate(2, 0)
+                new Coordinate(2, 2)
         );
         World world = new World(livingCellLocations);
         World nextWorld = world.tick();
@@ -60,5 +60,25 @@ public class TickTests {
         List<Coordinate> nextLivingLocations = nextWorld.getLivingCellLocations();
         List<Coordinate> expectedNextLivingLocations = asList(new Coordinate(1, 1));
         assertEquals(expectedNextLivingLocations, nextLivingLocations);
+    }
+
+    @Test
+    public void a_world_with_cells_to_be_born_returns_a_new_world_with_those_cells() {
+        List<Coordinate> livingCellLocations = asList(
+                new Coordinate(0, 0),
+                new Coordinate(1, 0),
+                new Coordinate(0, 1)
+        );
+        World world = new World(livingCellLocations);
+        World nextWorld = world.tick();
+
+        List<Coordinate> nextLivingLocations = nextWorld.getLivingCellLocations();
+        List<Coordinate> expectedNextLivingLocations = asList(
+                new Coordinate(0, 0),
+                new Coordinate(1, 0),
+                new Coordinate(0, 1),
+                new Coordinate(1, 1)
+        );
+        assertTrue(nextLivingLocations.containsAll(expectedNextLivingLocations));
     }
 }

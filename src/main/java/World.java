@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.util.Arrays.asList;
+
 public class World {
     private final Population population;
 
@@ -10,7 +12,11 @@ public class World {
 
     public World tick() {
         List<Coordinate> survivorLocations = this.population.identifySurvivors();
-        World nextWorld = new World(survivorLocations);
+        List<Coordinate> birthLocations = this.population.identifyBirths();
+        List<Coordinate> nextLivingLocations = new ArrayList<Coordinate>();
+        nextLivingLocations.addAll(survivorLocations);
+        nextLivingLocations.addAll(birthLocations);
+        World nextWorld = new World(nextLivingLocations);
         return nextWorld;
     }
 
