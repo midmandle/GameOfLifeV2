@@ -3,7 +3,6 @@ import java.util.List;
 
 public class World {
     private final Population population;
-    private List<Cell> livingCells;
 
     public World(List<Coordinate> livingLocations) {
         this.population = new Population(livingLocations);
